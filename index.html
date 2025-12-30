@@ -5,102 +5,65 @@
 <title>AFF TOOL</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f2f2f2;
-  padding: 10px;
-}
-.post {
-  background: #fff;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 15px;
-}
-.post h3 {
-  margin: 0 0 8px;
-  color: #007bff;
-}
-.btn-img {
-  width: 100%;
-  margin: 4px 0;
-  padding: 8px;
-  font-size: 15px;
-  border: none;
-  border-radius: 6px;
-  background: #ff5722;
-  color: #fff;
-}
-.btn-copy {
-  width: 100%;
-  margin-top: 6px;
-  padding: 8px;
-  font-size: 15px;
-  border: none;
-  border-radius: 6px;
-  background: #28a745;
-  color: #fff;
-}
-.btn-text {
-  background: #ff9800;
-}
-input, textarea {
-  width: 100%;
-  margin-top: 6px;
-  padding: 6px;
-  font-size: 14px;
-}
+body{font-family:Arial;background:#f2f2f2;padding:10px}
+.post{background:#fff;border-radius:10px;padding:10px;margin-bottom:15px}
+h3{margin:0 0 6px;color:#007bff}
+button{width:100%;margin:4px 0;padding:8px;font-size:15px;border:none;border-radius:6px}
+.img-btn{background:#ff5722;color:#fff}
+.copy-btn{background:#28a745;color:#fff}
+textarea,input{width:100%;margin-top:6px;padding:6px;font-size:14px}
 </style>
 </head>
 
 <body>
-
 <div id="app"></div>
 
 <script>
-// ================== CẤU HÌNH ==================
-const TOTAL_POST = 50;      // 🔥 SỐ BÀI (đổi số này)
-const IMG_PER_POST = 5;     // 🔥 ẢNH / BÀI (3–5 tuỳ bạn)
-// =============================================
+const TOTAL_POST = 50;
+const IMG_PER_POST = 5;
 
-const app = document.getElementById('app');
-
-function openImg(img) {
-  location.href = img; // mở full ảnh – giữ là lưu
+function openImg(img){
+  location.href = img;
 }
 
-function copyText(text) {
-  navigator.clipboard.writeText(text);
+function copyText(t){
+  navigator.clipboard.writeText(t);
   alert("✅ Đã copy");
 }
 
-for (let i = 1; i <= TOTAL_POST; i++) {
-  const startImg = (i - 1) * IMG_PER_POST + 1;
+const app = document.getElementById('app');
+
+for(let i=1;i<=TOTAL_POST;i++){
+  const startImg = (i-1)*IMG_PER_POST + 1;
+  const linkKey = 'link_'+i;
+  const textKey = 'text_'+i;
+
+  const savedLink = localStorage.getItem(linkKey) || '';
+  const savedText = localStorage.getItem(textKey) || '';
 
   let html = `
   <div class="post">
     <h3>🟢 BÀI ${i}</h3>
   `;
 
-  for (let j = 0; j < IMG_PER_POST; j++) {
+  for(let j=0;j<IMG_PER_POST;j++){
     html += `
-      <button class="btn-img" onclick="openImg('${startImg + j}.jpg')">
-        ⬇️ ẢNH ${j + 1}
+      <button class="img-btn" onclick="openImg('${startImg+j}.jpg')">
+        ⬇️ ẢNH ${j+1}
       </button>
     `;
   }
 
   html += `
-    <input value="https://shope.ee/link-bai${i}" readonly>
-    <button class="btn-copy" onclick="copyText(this.previousElementSibling.value)">
+    <input placeholder="🔗 Link aff bài ${i}" value="${savedLink}"
+      oninput="localStorage.setItem('${linkKey}',this.value)">
+    <button class="copy-btn" onclick="copyText(this.previousElementSibling.value)">
       📋 COPY LINK
     </button>
 
-    <textarea rows="3" readonly>
-🔥 Deal hot hôm nay
-Giá tốt – Freeship
-Chốt nhanh
-    </textarea>
-    <button class="btn-copy btn-text" onclick="copyText(this.previousElementSibling.value)">
+    <textarea rows="3" placeholder="📝 Nội dung bài ${i}"
+      oninput="localStorage.setItem('${textKey}',this.value)">${savedText}</textarea>
+    <button class="copy-btn" onclick="copyText(this.previousElementSibling.value)">
       📝 COPY NỘI DUNG
     </button>
   </div>
@@ -109,6 +72,5 @@ Chốt nhanh
   app.insertAdjacentHTML('beforeend', html);
 }
 </script>
-
 </body>
 </html>
