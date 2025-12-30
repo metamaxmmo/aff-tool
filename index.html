@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Aff Tool</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial;background:#f2f2f2;margin:0}
+.post{background:#fff;margin:10px;padding:10px;border-radius:8px}
+img{width:100%;border-radius:6px}
+button{width:100%;padding:10px;margin-top:6px;font-size:16px}
+textarea{width:100%;height:80px}
+</style>
+</head>
+<body>
+
+<div class="post">
+  <img src="001.jpg">
+  <button onclick="copyText('https://shope.ee/demo')">📋 COPY LINK</button>
+  <textarea readonly>🔥 Deal sốc hôm nay
+Giảm 50%
+Mua ngay 👇</textarea>
+  <button onclick="copyText(`🔥 Deal sốc hôm nay
+Giảm 50%
+Mua ngay 👇`)">📝 COPY CAPTION</button>
+</div>
+
+<script>
+function copyText(text){
+  navigator.clipboard.writeText(text);
+  alert("Đã copy");
+}
+</script>
+
+</body>
+</html>
