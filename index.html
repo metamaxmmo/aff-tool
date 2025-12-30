@@ -1,34 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>Aff Tool</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body{font-family:Arial;background:#f2f2f2;margin:0}
-.post{background:#fff;margin:10px;padding:10px;border-radius:8px}
-img{width:100%;border-radius:6px}
-button{width:100%;padding:10px;margin-top:6px;font-size:16px}
-textarea{width:100%;height:80px}
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  padding: 10px;
+}
+.post {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+.post h3 {
+  margin: 0 0 8px;
+}
+.post img {
+  width: 100%;
+  border-radius: 8px;
+}
+textarea, input {
+  width: 100%;
+  margin-top: 8px;
+  padding: 6px;
+  font-size: 14px;
+}
+button {
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  background: #007bff;
+  color: white;
+}
+button.link {
+  background: #28a745;
+}
+button.note {
+  background: #ff9800;
+}
 </style>
 </head>
+
 <body>
 
+<!-- ===== BÀI 1 ===== -->
 <div class="post">
-  <img src="001.jpg">
-  <button onclick="copyText('https://shope.ee/demo')">📋 COPY LINK</button>
-  <textarea readonly>🔥 Deal sốc hôm nay
-Giảm 50%
-Mua ngay 👇</textarea>
-  <button onclick="copyText(`🔥 Deal sốc hôm nay
-Giảm 50%
-Mua ngay 👇`)">📝 COPY CAPTION</button>
+  <h3>🟢 BÀI 1</h3>
+
+  <p>🖼 ẢNH BÀI VIẾT</p>
+  <img src="01.jpg">
+
+  <p>🔗 LINK AFF</p>
+  <input value="https://shope.ee/xxxx" readonly>
+  <button class="link" onclick="copy(this.previousElementSibling.value)">
+    📋 COPY LINK
+  </button>
+
+  <p>📝 NỘI DUNG</p>
+  <textarea rows="3" readonly>🔥 Deal hot hôm nay
+Giảm giá sâu
+Freeship toàn quốc</textarea>
+  <button class="note" onclick="copy(this.previousElementSibling.value)">
+    📝 COPY NỘI DUNG
+  </button>
+</div>
+
+<!-- ===== BÀI 2 ===== -->
+<div class="post">
+  <h3>🟢 BÀI 2</h3>
+
+  <p>🖼 ẢNH BÀI VIẾT</p>
+  <img src="02.jpg">
+
+  <p>🔗 LINK AFF</p>
+  <input value="https://shope.ee/yyyy" readonly>
+  <button class="link" onclick="copy(this.previousElementSibling.value)">
+    📋 COPY LINK
+  </button>
+
+  <p>📝 NỘI DUNG</p>
+  <textarea rows="3" readonly>⚡ Săn sale sốc
+Giá tốt hôm nay</textarea>
+  <button class="note" onclick="copy(this.previousElementSibling.value)">
+    📝 COPY NỘI DUNG
+  </button>
 </div>
 
 <script>
-function copyText(text){
+function copy(text) {
   navigator.clipboard.writeText(text);
-  alert("Đã copy");
+  alert("✅ Đã copy");
 }
 </script>
 
