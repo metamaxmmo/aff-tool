@@ -54,113 +54,59 @@ input, textarea {
 
 <body>
 
-<!-- ===== BÀI 1 (1–5) ===== -->
-<div class="post">
-<h3>🟢 BÀI 1</h3>
-<button class="btn-img" onclick="openImg('1.jpg')">⬇️ ẢNH 1</button>
-<button class="btn-img" onclick="openImg('2.jpg')">⬇️ ẢNH 2</button>
-<button class="btn-img" onclick="openImg('3.jpg')">⬇️ ẢNH 3</button>
-<button class="btn-img" onclick="openImg('4.jpg')">⬇️ ẢNH 4</button>
-<button class="btn-img" onclick="openImg('5.jpg')">⬇️ ẢNH 5</button>
-
-<input value="https://shope.ee/link-bai1" readonly>
-<button class="btn-copy" onclick="copyText(this.previousElementSibling.value)">📋 COPY LINK</button>
-
-<textarea rows="3" readonly>
-🔥 Deal hot hôm nay
-Giá tốt – Freeship
-Chốt nhanh
-</textarea>
-<button class="btn-copy btn-text" onclick="copyText(this.previousElementSibling.value)">📝 COPY NỘI DUNG</button>
-</div>
-
-<!-- ===== BÀI 2 (6–10) ===== -->
-<div class="post">
-<h3>🟢 BÀI 2</h3>
-<button class="btn-img" onclick="openImg('6.jpg')">⬇️ ẢNH 6</button>
-<button class="btn-img" onclick="openImg('7.jpg')">⬇️ ẢNH 7</button>
-<button class="btn-img" onclick="openImg('8.jpg')">⬇️ ẢNH 8</button>
-<button class="btn-img" onclick="openImg('9.jpg')">⬇️ ẢNH 9</button>
-<button class="btn-img" onclick="openImg('10.jpg')">⬇️ ẢNH 10</button>
-
-<input value="https://shope.ee/link-bai2" readonly>
-<button class="btn-copy" onclick="copyText(this.previousElementSibling.value)">📋 COPY LINK</button>
-
-<textarea rows="3" readonly>
-⚡ Sản phẩm đang sale
-Giảm sâu hôm nay
-Nên mua
-</textarea>
-<button class="btn-copy btn-text" onclick="copyText(this.previousElementSibling.value)">📝 COPY NỘI DUNG</button>
-</div>
-
-<!-- ===== BÀI 3 (11–15) ===== -->
-<div class="post">
-<h3>🟢 BÀI 3</h3>
-<button class="btn-img" onclick="openImg('11.jpg')">⬇️ ẢNH 11</button>
-<button class="btn-img" onclick="openImg('12.jpg')">⬇️ ẢNH 12</button>
-<button class="btn-img" onclick="openImg('13.jpg')">⬇️ ẢNH 13</button>
-<button class="btn-img" onclick="openImg('14.jpg')">⬇️ ẢNH 14</button>
-<button class="btn-img" onclick="openImg('15.jpg')">⬇️ ẢNH 15</button>
-
-<input value="https://shope.ee/link-bai3" readonly>
-<button class="btn-copy" onclick="copyText(this.previousElementSibling.value)">📋 COPY LINK</button>
-
-<textarea rows="3" readonly>
-💥 Hàng bán chạy
-Đánh giá cao
-Đáng tiền
-</textarea>
-<button class="btn-copy btn-text" onclick="copyText(this.previousElementSibling.value)">📝 COPY NỘI DUNG</button>
-</div>
-
-<!-- ===== BÀI 4 (16–20) ===== -->
-<div class="post">
-<h3>🟢 BÀI 4</h3>
-<button class="btn-img" onclick="openImg('16.jpg')">⬇️ ẢNH 16</button>
-<button class="btn-img" onclick="openImg('17.jpg')">⬇️ ẢNH 17</button>
-<button class="btn-img" onclick="openImg('18.jpg')">⬇️ ẢNH 18</button>
-<button class="btn-img" onclick="openImg('19.jpg')">⬇️ ẢNH 19</button>
-<button class="btn-img" onclick="openImg('20.jpg')">⬇️ ẢNH 20</button>
-
-<input value="https://shope.ee/link-bai4" readonly>
-<button class="btn-copy" onclick="copyText(this.previousElementSibling.value)">📋 COPY LINK</button>
-
-<textarea rows="3" readonly>
-🎯 Deal ngon
-Giá ổn
-Mua liền tay
-</textarea>
-<button class="btn-copy btn-text" onclick="copyText(this.previousElementSibling.value)">📝 COPY NỘI DUNG</button>
-</div>
-
-<!-- ===== BÀI 5 (21–25) ===== -->
-<div class="post">
-<h3>🟢 BÀI 5</h3>
-<button class="btn-img" onclick="openImg('21.jpg')">⬇️ ẢNH 21</button>
-<button class="btn-img" onclick="openImg('22.jpg')">⬇️ ẢNH 22</button>
-<button class="btn-img" onclick="openImg('23.jpg')">⬇️ ẢNH 23</button>
-<button class="btn-img" onclick="openImg('24.jpg')">⬇️ ẢNH 24</button>
-<button class="btn-img" onclick="openImg('25.jpg')">⬇️ ẢNH 25</button>
-
-<input value="https://shope.ee/link-bai5" readonly>
-<button class="btn-copy" onclick="copyText(this.previousElementSibling.value)">📋 COPY LINK</button>
-
-<textarea rows="3" readonly>
-🔥 Giá tốt hôm nay
-Số lượng có hạn
-Chốt nhanh
-</textarea>
-<button class="btn-copy btn-text" onclick="copyText(this.previousElementSibling.value)">📝 COPY NỘI DUNG</button>
-</div>
+<div id="app"></div>
 
 <script>
+// ================== CẤU HÌNH ==================
+const TOTAL_POST = 50;      // 🔥 SỐ BÀI (đổi số này)
+const IMG_PER_POST = 5;     // 🔥 ẢNH / BÀI (3–5 tuỳ bạn)
+// =============================================
+
+const app = document.getElementById('app');
+
 function openImg(img) {
   location.href = img; // mở full ảnh – giữ là lưu
 }
+
 function copyText(text) {
   navigator.clipboard.writeText(text);
   alert("✅ Đã copy");
+}
+
+for (let i = 1; i <= TOTAL_POST; i++) {
+  const startImg = (i - 1) * IMG_PER_POST + 1;
+
+  let html = `
+  <div class="post">
+    <h3>🟢 BÀI ${i}</h3>
+  `;
+
+  for (let j = 0; j < IMG_PER_POST; j++) {
+    html += `
+      <button class="btn-img" onclick="openImg('${startImg + j}.jpg')">
+        ⬇️ ẢNH ${j + 1}
+      </button>
+    `;
+  }
+
+  html += `
+    <input value="https://shope.ee/link-bai${i}" readonly>
+    <button class="btn-copy" onclick="copyText(this.previousElementSibling.value)">
+      📋 COPY LINK
+    </button>
+
+    <textarea rows="3" readonly>
+🔥 Deal hot hôm nay
+Giá tốt – Freeship
+Chốt nhanh
+    </textarea>
+    <button class="btn-copy btn-text" onclick="copyText(this.previousElementSibling.value)">
+      📝 COPY NỘI DUNG
+    </button>
+  </div>
+  `;
+
+  app.insertAdjacentHTML('beforeend', html);
 }
 </script>
 
