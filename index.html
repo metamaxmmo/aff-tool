@@ -18,14 +18,15 @@ body {
 }
 .post h3 {
   margin: 0 0 8px;
+  color: #007bff;
 }
 .post img {
   width: 100%;
   border-radius: 8px;
 }
-textarea, input {
+input, textarea {
   width: 100%;
-  margin-top: 8px;
+  margin-top: 6px;
   padding: 6px;
   font-size: 14px;
 }
@@ -36,15 +37,11 @@ button {
   font-size: 15px;
   border: none;
   border-radius: 6px;
-  background: #007bff;
-  color: white;
+  color: #fff;
 }
-button.link {
-  background: #28a745;
-}
-button.note {
-  background: #ff9800;
-}
+.btn-img { background: #ff5722; }
+.btn-link { background: #28a745; }
+.btn-text { background: #ff9800; }
 </style>
 </head>
 
@@ -53,50 +50,83 @@ button.note {
 <!-- ===== BÀI 1 ===== -->
 <div class="post">
   <h3>🟢 BÀI 1</h3>
-
-  <p>🖼 ẢNH BÀI VIẾT</p>
   <img src="01.jpg">
+  <button class="btn-img" onclick="openImg('01.jpg')">⬇️ TẢI ẢNH VỀ MÁY</button>
 
-  <p>🔗 LINK AFF</p>
-  <input value="https://shope.ee/xxxx" readonly>
-  <button class="link" onclick="copy(this.previousElementSibling.value)">
-    📋 COPY LINK
-  </button>
+  <input value="https://shope.ee/link1" readonly>
+  <button class="btn-link" onclick="copy(this.previousElementSibling.value)">📋 COPY LINK</button>
 
-  <p>📝 NỘI DUNG</p>
-  <textarea rows="3" readonly>🔥 Deal hot hôm nay
-Giảm giá sâu
-Freeship toàn quốc</textarea>
-  <button class="note" onclick="copy(this.previousElementSibling.value)">
-    📝 COPY NỘI DUNG
-  </button>
+  <textarea rows="3" readonly>🔥 Deal sốc hôm nay
+Giảm sâu
+Freeship</textarea>
+  <button class="btn-text" onclick="copy(this.previousElementSibling.value)">📝 COPY NỘI DUNG</button>
 </div>
 
 <!-- ===== BÀI 2 ===== -->
 <div class="post">
   <h3>🟢 BÀI 2</h3>
-
-  <p>🖼 ẢNH BÀI VIẾT</p>
   <img src="02.jpg">
+  <button class="btn-img" onclick="openImg('02.jpg')">⬇️ TẢI ẢNH VỀ MÁY</button>
 
-  <p>🔗 LINK AFF</p>
-  <input value="https://shope.ee/yyyy" readonly>
-  <button class="link" onclick="copy(this.previousElementSibling.value)">
-    📋 COPY LINK
-  </button>
+  <input value="https://shope.ee/link2" readonly>
+  <button class="btn-link" onclick="copy(this.previousElementSibling.value)">📋 COPY LINK</button>
 
-  <p>📝 NỘI DUNG</p>
-  <textarea rows="3" readonly>⚡ Săn sale sốc
-Giá tốt hôm nay</textarea>
-  <button class="note" onclick="copy(this.previousElementSibling.value)">
-    📝 COPY NỘI DUNG
-  </button>
+  <textarea rows="3" readonly>⚡ Sale hôm nay
+Giá tốt
+Chốt nhanh</textarea>
+  <button class="btn-text" onclick="copy(this.previousElementSibling.value)">📝 COPY NỘI DUNG</button>
+</div>
+
+<!-- ===== BÀI 3 ===== -->
+<div class="post">
+  <h3>🟢 BÀI 3</h3>
+  <img src="03.jpg">
+  <button class="btn-img" onclick="openImg('03.jpg')">⬇️ TẢI ẢNH VỀ MÁY</button>
+
+  <input value="https://shope.ee/link3" readonly>
+  <button class="btn-link" onclick="copy(this.previousElementSibling.value)">📋 COPY LINK</button>
+
+  <textarea rows="3" readonly>🔥 Hàng hot
+Giá tốt
+Nên mua</textarea>
+  <button class="btn-text" onclick="copy(this.previousElementSibling.value)">📝 COPY NỘI DUNG</button>
+</div>
+
+<!-- ===== BÀI 4 ===== -->
+<div class="post">
+  <h3>🟢 BÀI 4</h3>
+  <img src="04.jpg">
+  <button class="btn-img" onclick="openImg('04.jpg')">⬇️ TẢI ẢNH VỀ MÁY</button>
+
+  <input value="https://shope.ee/link4" readonly>
+  <button class="btn-link" onclick="copy(this.previousElementSibling.value)">📋 COPY LINK</button>
+
+  <textarea rows="3" readonly>💥 Deal ngon
+Số lượng có hạn</textarea>
+  <button class="btn-text" onclick="copy(this.previousElementSibling.value)">📝 COPY NỘI DUNG</button>
+</div>
+
+<!-- ===== BÀI 5 ===== -->
+<div class="post">
+  <h3>🟢 BÀI 5</h3>
+  <img src="05.jpg">
+  <button class="btn-img" onclick="openImg('05.jpg')">⬇️ TẢI ẢNH VỀ MÁY</button>
+
+  <input value="https://shope.ee/link5" readonly>
+  <button class="btn-link" onclick="copy(this.previousElementSibling.value)">📋 COPY LINK</button>
+
+  <textarea rows="3" readonly>🎯 Giá hời
+Mua liền tay</textarea>
+  <button class="btn-text" onclick="copy(this.previousElementSibling.value)">📝 COPY NỘI DUNG</button>
 </div>
 
 <script>
 function copy(text) {
   navigator.clipboard.writeText(text);
   alert("✅ Đã copy");
+}
+function openImg(img) {
+  window.open(img, '_blank');
 }
 </script>
 
