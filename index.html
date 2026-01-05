@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <title>AFF TOOL</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- CHỐNG CACHE -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
 <style>
 body{font-family:Arial;background:#f2f2f2;padding:10px}
 .post{background:#fff;border-radius:10px;padding:10px;margin-bottom:15px}
 h3{margin:0 0 6px;color:#007bff}
-button{width:100%;margin:4px 0;padding:8px;font-size:15px;border:none;border-radius:6px}
+button{width:100%;margin:4px 0;padding:8px;font-size:15px;border:none;border-radius:6px;cursor:pointer}
 .img-btn{background:#ff5722;color:#fff}
 .copy-btn{background:#28a745;color:#fff}
-textarea,input{width:100%;margin-top:6px;padding:6px;font-size:14px}
+textarea,input{width:100%;margin-top:6px;padding:6px;font-size:14px;box-sizing:border-box}
 </style>
 </head>
 
@@ -22,8 +25,9 @@ textarea,input{width:100%;margin-top:6px;padding:6px;font-size:14px}
 <div id="app"></div>
 
 <script>
-const TOTAL_POST = 50;
-const IMG_PER_POST = 5;
+/* ===== CẤU HÌNH ===== */
+const TOTAL_POST = 50;      // số bài
+const IMG_PER_POST = 5;     // ảnh mỗi bài
 
 function openImg(img){
   location.href = img;
@@ -36,6 +40,7 @@ function copyText(t){
 
 const app = document.getElementById('app');
 
+/* ===== RENDER BÀI ===== */
 for(let i=1;i<=TOTAL_POST;i++){
   const startImg = (i-1)*IMG_PER_POST + 1;
   const linkKey = 'link_'+i;
@@ -51,8 +56,8 @@ for(let i=1;i<=TOTAL_POST;i++){
 
   for(let j=0;j<IMG_PER_POST;j++){
     html += `
-      <button class="img-btn" onclick="openImg('${startImg+j}.jpg')">
-        ⬇️ ẢNH ${j+1}
+      <button class="img-btn" onclick="openImg('${startImg + j}.jpg')">
+        ⬇️ ẢNH ${j + 1}
       </button>
     `;
   }
@@ -77,4 +82,3 @@ for(let i=1;i<=TOTAL_POST;i++){
 </script>
 </body>
 </html>
-
