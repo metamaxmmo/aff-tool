@@ -18,6 +18,7 @@ button{width:100%;margin:4px 0;padding:8px;font-size:15px;border:none;border-rad
 .img-btn{background:#ff5722;color:#fff}
 .copy-btn{background:#28a745;color:#fff}
 textarea,input{width:100%;margin-top:6px;padding:6px;font-size:14px;box-sizing:border-box}
+input,textarea{background:#f9f9f9}
 </style>
 </head>
 
@@ -26,13 +27,37 @@ textarea,input{width:100%;margin-top:6px;padding:6px;font-size:14px;box-sizing:b
 
 <script>
 /* ===== CẤU HÌNH ===== */
-const TOTAL_POST = 50;      // số bài
-const IMG_PER_POST = 5;     // ảnh mỗi bài
+const TOTAL_POST = 20;     // ⚠️ KHÔNG ĐỔI nếu dùng đủ 20 bài
+const IMG_PER_POST = 5;   // ảnh mỗi bài
 
+/* ===== NỘI DUNG GHI CỨNG (SỬA TẠI ĐÂY) ===== */
+const DATA = {
+  1:{ link:"LINK_AFF_1",  text:"Nội dung bài 1" },
+  2:{ link:"LINK_AFF_2",  text:"Nội dung bài 2" },
+  3:{ link:"LINK_AFF_3",  text:"Nội dung bài 3" },
+  4:{ link:"LINK_AFF_4",  text:"Nội dung bài 4" },
+  5:{ link:"LINK_AFF_5",  text:"Nội dung bài 5" },
+  6:{ link:"LINK_AFF_6",  text:"Nội dung bài 6" },
+  7:{ link:"LINK_AFF_7",  text:"Nội dung bài 7" },
+  8:{ link:"LINK_AFF_8",  text:"Nội dung bài 8" },
+  9:{ link:"LINK_AFF_9",  text:"Nội dung bài 9" },
+ 10:{ link:"LINK_AFF_10", text:"Nội dung bài 10" },
+ 11:{ link:"LINK_AFF_11", text:"Nội dung bài 11" },
+ 12:{ link:"LINK_AFF_12", text:"Nội dung bài 12" },
+ 13:{ link:"LINK_AFF_13", text:"Nội dung bài 13" },
+ 14:{ link:"LINK_AFF_14", text:"Nội dung bài 14" },
+ 15:{ link:"LINK_AFF_15", text:"Nội dung bài 15" },
+ 16:{ link:"LINK_AFF_16", text:"Nội dung bài 16" },
+ 17:{ link:"LINK_AFF_17", text:"Nội dung bài 17" },
+ 18:{ link:"LINK_AFF_18", text:"Nội dung bài 18" },
+ 19:{ link:"LINK_AFF_19", text:"Nội dung bài 19" },
+ 20:{ link:"LINK_AFF_20", text:"Nội dung bài 20" }
+};
+
+/* ===== HÀM ===== */
 function openImg(img){
   location.href = img;
 }
-
 function copyText(t){
   navigator.clipboard.writeText(t);
   alert("✅ Đã copy");
@@ -40,44 +65,33 @@ function copyText(t){
 
 const app = document.getElementById('app');
 
-/* ===== RENDER BÀI ===== */
+/* ===== RENDER ===== */
 for(let i=1;i<=TOTAL_POST;i++){
   const startImg = (i-1)*IMG_PER_POST + 1;
-  const linkKey = 'link_'+i;
-  const textKey = 'text_'+i;
+  const item = DATA[i] || { link:"", text:"" };
 
-  const savedLink = localStorage.getItem(linkKey) || '';
-  const savedText = localStorage.getItem(textKey) || '';
-
-  let html = `
-  <div class="post">
-    <h3>🟢 BÀI ${i}</h3>
-  `;
+  let html = `<div class="post"><h3>🟢 BÀI ${i}</h3>`;
 
   for(let j=0;j<IMG_PER_POST;j++){
     html += `
       <button class="img-btn" onclick="openImg('${startImg + j}.jpg')">
-        ⬇️ ẢNH ${j + 1}
-      </button>
-    `;
+        ⬇️ ẢNH ${j+1}
+      </button>`;
   }
 
   html += `
-    <input placeholder="🔗 Link aff bài ${i}" value="${savedLink}"
-      oninput="localStorage.setItem('${linkKey}',this.value)">
+    <input value="${item.link}" readonly>
     <button class="copy-btn" onclick="copyText(this.previousElementSibling.value)">
       📋 COPY LINK
     </button>
 
-    <textarea rows="3" placeholder="📝 Nội dung bài ${i}"
-      oninput="localStorage.setItem('${textKey}',this.value)">${savedText}</textarea>
+    <textarea rows="3" readonly>${item.text}</textarea>
     <button class="copy-btn" onclick="copyText(this.previousElementSibling.value)">
       📝 COPY NỘI DUNG
     </button>
-  </div>
-  `;
+  </div>`;
 
-  app.insertAdjacentHTML('beforeend', html);
+  app.insertAdjacentHTML("beforeend", html);
 }
 </script>
 </body>
