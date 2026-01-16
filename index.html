@@ -55,9 +55,11 @@ const DATA = {
 };
 
 /* ===== HÀM ===== */
-function openImg(img){
-  location.href = img;
+function copyImg(img){
+  navigator.clipboard.writeText(img);
+  alert("✅ Đã copy ảnh: " + img);
 }
+
 function copyText(t){
   navigator.clipboard.writeText(t);
   alert("✅ Đã copy");
@@ -74,7 +76,7 @@ for(let i=1;i<=TOTAL_POST;i++){
 
   for(let j=0;j<IMG_PER_POST;j++){
     html += `
-      <button class="img-btn" onclick="openImg('${startImg + j}.jpg')">
+    <button class="img-btn" onclick="copyImg('${startImg + j}.jpg')">
         ⬇️ ẢNH ${j+1}
       </button>`;
   }
@@ -96,6 +98,7 @@ for(let i=1;i<=TOTAL_POST;i++){
 </script>
 </body>
 </html>
+
 
 
 
