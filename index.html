@@ -11,14 +11,46 @@
 <meta http-equiv="Expires" content="0">
 
 <style>
-body{font-family:Arial;background:#f2f2f2;padding:10px}
-.post{background:#fff;border-radius:10px;padding:10px;margin-bottom:15px}
-h3{margin:0 0 6px;color:#007bff}
-button{width:100%;margin:4px 0;padding:8px;font-size:15px;border:none;border-radius:6px;cursor:pointer}
-.img-btn{background:#ff5722;color:#fff}
-.copy-btn{background:#28a745;color:#fff}
-textarea,input{width:100%;margin-top:6px;padding:6px;font-size:14px;box-sizing:border-box}
-input,textarea{background:#f9f9f9}
+body{
+  font-family:Arial;
+  background:#f2f2f2;
+  padding:10px
+}
+.post{
+  background:#fff;
+  border-radius:10px;
+  padding:10px;
+  margin-bottom:15px
+}
+h3{
+  margin:0 0 6px;
+  color:#007bff
+}
+button{
+  width:100%;
+  margin:4px 0;
+  padding:8px;
+  font-size:15px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer
+}
+.img-btn{
+  background:#ff5722;
+  color:#fff
+}
+.copy-btn{
+  background:#28a745;
+  color:#fff
+}
+textarea,input{
+  width:100%;
+  margin-top:6px;
+  padding:6px;
+  font-size:14px;
+  box-sizing:border-box;
+  background:#f9f9f9
+}
 </style>
 </head>
 
@@ -27,68 +59,70 @@ input,textarea{background:#f9f9f9}
 
 <script>
 /* ===== CẤU HÌNH ===== */
-const TOTAL_POST = 20;     // ⚠️ KHÔNG ĐỔI nếu dùng đủ 20 bài
-const IMG_PER_POST = 5;   // ảnh mỗi bài
+const TOTAL_POST = 20;
+const IMG_PER_POST = 5;
 
-/* ===== NỘI DUNG GHI CỨNG (SỬA TẠI ĐÂY) ===== */
+/* ===== DỮ LIỆU ===== */
 const DATA = {
-  1:{ link:"LINK_AFF_1",  text:"Bộ áo dài mẹ và bé gái, áo dài cho mẹ và bé Tết 2026 - vải tằm ánh kim - áo dài\nhttps://s.shopee.vn/4LCm6HGhVN" },
-  2:{ link:"LINK_AFF_2",  text:"Áo dài cách tân TƯỜNG XUÂN dáng suông cổ đính ngọc trai\nhttps://s.shopee.vn/4LCm6HGhVN" },
-  3:{ link:"LINK_AFF_3",  text:"Áo Dài Hồng Lụa Hoa Văn Quần Đỏ Kèm Bờm \nhttps://s.shopee.vn/1LZAWuSkRX" },
-  4:{ link:"LINK_AFF_4",  text:"Đồ lam cho nữ đính nơ TINH NHI mềm mại và tôn dáng \nhttps://s.shopee.vn/BND8mTpUW" },
-  5:{ link:"LINK_AFF_5",  text:"Áo dài TƯỜNG VY cách tân dáng suông 4 tà chất tơ ánh kim lót lụa trắng thướt tha mặc đi tiệc, lễ tết\nhttps://s.shopee.vn/1qVR7r8zJ5" },
-  6:{ link:"LINK_AFF_6",  text:" Áo Dài Cách Tân Dáng Suông, Vải Gấm Cao Cấp Họa Tiết Hoa Hồng\nhttps://s.shopee.vn/9fEISHjRjF" },
-  7:{ link:"LINK_AFF_7",  text:"Set Bộ Cách Tân Voan Hoa Nhí CÁT TƯỜNG\nhttps://s.shopee.vn/qctw46q6k" },
-  8:{ link:"LINK_AFF_8",  text:"Áo dài cách tân , áo dài gấm đỏ đô cao cấp,áo dài dáng suông tay lỡ hàng may sẵn\nhttps://s.shopee.vn/6fagso3PO5" },
-  9:{ link:"LINK_AFF_9",  text:"Áo Dài CHÂU SA - Dáng Suông, Tay Lỡ Với Thiết Kế Hai Tà - Chất Liệu Gấm Hoa Nổi Cao Cấp\nhttps://s.shopee.vn/20orKFBQ9c" },
- 10:{ link:"LINK_AFF_10", text:"Set áo trễ vai dài tay mix chân váy midi set áo len tăm nơ bên phối chân váy xếp ly dáng dài\nhttps://s.shopee.vn/LgdLDUht2" },
- 11:{ link:"LINK_AFF_11", text:"Áo Dài Cách Tân Mẹ Và Bé Mai Chi Thêu Hoa Cao Cấp\nhttps://s.shopee.vn/9fEISNlyLA" },
- 12:{ link:"LINK_AFF_12", text:"Áo Dài Cách Tân CÚC HỌA MI Dáng Suông Vải Gấm, May 4 Tà Lót Lụa phom tay Loe\nhttps://s.shopee.vn/qctwAReTQ" },
- 13:{ link:"LINK_AFF_13", text:"Áo Dài Gấm Dáng Suông TƯỜNG VY Áo 4 Tà, Tà Trong Vải Lót Lụa Trắng\nhttps://s.shopee.vn/9KbS3ofyo6" },
- 14:{ link:"LINK_AFF_14", text:"BIGSIZE Áo Dài Cách Tân Nữ Dáng Suông - Thêu Thủ Công, Cổ Tròn\nhttps://s.shopee.vn/7AWxTtvLKD" },
- 15:{ link:"LINK_AFF_15", text:"áo khoác nữ+váy sang chảnh，set đồ nữ mùa đông\nhttps://s.shopee.vn/6pu75M5NQD" },
- 16:{ link:"LINK_AFF_16", text:"áo kiểu hàn quốc+chân váy dáng dài，set đồ nữ đi chơi\nhttps://s.shopee.vn/9KbS3yQ2za" },
- 17:{ link:"LINK_AFF_17", text:"Bộ Đồ Mặc Tết, Chân Váy Đuôi Cá Nhung Thu Đông Nữ, Bộ Đồ Hai Chiếc Áo Len Màu Đỏ\nhttps://s.shopee.vn/10wKAR2grg" },
- 18:{ link:"LINK_AFF_18", text:"Set bộ đồ lam nữ mặc đi chùa lễ tết áo chất gấm in hoa cổ tròn tay lửng phối quần dài ống rộng chất lụa siêu xinh\nhttps://s.shopee.vn/1BFkMkq6QW" },
- 19:{ link:"LINK_AFF_19", text:"Set đồ nữ Áo Trễ Vai Ren Chân Váy Dài Lượn Sóng Màu Kem Siêu Sang Chảnh\nhttps://s.shopee.vn/9KbS5m34wY" },
- 20:{ link:"LINK_AFF_20", text:"Set Đồ Áo Khoác Chân Váy Dạ Tweed Chữ A\nhttps://s.shopee.vn/8KiutzaCIG" }
+  1:{ link:"LINK_AFF_1", text:"Bộ áo dài mẹ và bé gái\nhttps://s.shopee.vn/4LCm6HGhVN" },
+  2:{ link:"LINK_AFF_2", text:"Áo dài cách tân TƯỜNG XUÂN\nhttps://s.shopee.vn/4LCm6HGhVN" },
+  3:{ link:"LINK_AFF_3", text:"Áo dài Hồng Lụa Hoa Văn\nhttps://s.shopee.vn/1LZAWuSkRX" },
+  4:{ link:"LINK_AFF_4", text:"Đồ lam nữ TINH NHI\nhttps://s.shopee.vn/BND8mTpUW" },
+  5:{ link:"LINK_AFF_5", text:"Áo dài TƯỜNG VY\nhttps://s.shopee.vn/1qVR7r8zJ5" },
+  6:{ link:"LINK_AFF_6", text:"Áo dài gấm hoa hồng\nhttps://s.shopee.vn/9fEISHjRjF" },
+  7:{ link:"LINK_AFF_7", text:"Set bộ CÁT TƯỜNG\nhttps://s.shopee.vn/qctw46q6k" },
+  8:{ link:"LINK_AFF_8", text:"Áo dài gấm đỏ đô\nhttps://s.shopee.vn/6fagso3PO5" },
+  9:{ link:"LINK_AFF_9", text:"Áo dài CHÂU SA\nhttps://s.shopee.vn/20orKFBQ9c" },
+ 10:{ link:"LINK_AFF_10", text:"Set áo trễ vai váy midi\nhttps://s.shopee.vn/LgdLDUht2" },
+ 11:{ link:"LINK_AFF_11", text:"Áo dài mẹ và bé Mai Chi\nhttps://s.shopee.vn/9fEISNlyLA" },
+ 12:{ link:"LINK_AFF_12", text:"Áo dài CÚC HỌA MI\nhttps://s.shopee.vn/qctwAReTQ" },
+ 13:{ link:"LINK_AFF_13", text:"Áo dài gấm TƯỜNG VY\nhttps://s.shopee.vn/9KbS3ofyo6" },
+ 14:{ link:"LINK_AFF_14", text:"Áo dài BIGSIZE\nhttps://s.shopee.vn/7AWxTtvLKD" },
+ 15:{ link:"LINK_AFF_15", text:"Set đồ nữ sang chảnh\nhttps://s.shopee.vn/6pu75M5NQD" },
+ 16:{ link:"LINK_AFF_16", text:"Set đồ nữ Hàn Quốc\nhttps://s.shopee.vn/9KbS3yQ2za" },
+ 17:{ link:"LINK_AFF_17", text:"Bộ đồ mặc Tết\nhttps://s.shopee.vn/10wKAR2grg" },
+ 18:{ link:"LINK_AFF_18", text:"Set đồ lam nữ đi chùa\nhttps://s.shopee.vn/1BFkMkq6QW" },
+ 19:{ link:"LINK_AFF_19", text:"Set váy ren kem\nhttps://s.shopee.vn/9KbS5m34wY" },
+ 20:{ link:"LINK_AFF_20", text:"Set tweed chữ A\nhttps://s.shopee.vn/8KiutzaCIG" }
 };
 
-/* ===== HÀM ===== */
-function copyImg(img){
-  navigator.clipboard.writeText(img);
-  alert("✅ Đã copy ảnh: " + img);
-}
-
-function copyText(t){
-  navigator.clipboard.writeText(t);
+/* ===== HÀM COPY ===== */
+function copyText(text){
+  navigator.clipboard.writeText(text);
   alert("✅ Đã copy");
 }
 
-const app = document.getElementById('app');
+function copyImg(img){
+  navigator.clipboard.writeText(img);
+  alert("🖼️ Đã copy ảnh: " + img);
+}
 
 /* ===== RENDER ===== */
+const app = document.getElementById("app");
+
 for(let i=1;i<=TOTAL_POST;i++){
   const startImg = (i-1)*IMG_PER_POST + 1;
-  const item = DATA[i] || { link:"", text:"" };
+  const item = DATA[i] || {link:"",text:""};
 
-  let html = `<div class="post"><h3>🟢 BÀI ${i}</h3>`;
+  let html = `<div class="post">
+    <h3>🟢 BÀI ${i}</h3>`;
 
   for(let j=0;j<IMG_PER_POST;j++){
+    const imgName = `${startImg + j}.jpg`;
     html += `
-    <button class="img-btn" onclick="copyImg('${startImg + j}.jpg')">
-        ⬇️ ẢNH ${j+1}
+      <button class="img-btn" onclick="copyImg('${imgName}')">
+        📸 COPY ẢNH ${j+1}
       </button>`;
   }
 
   html += `
     <input value="${item.link}" readonly>
-    <button class="copy-btn" onclick="copyText(this.previousElementSibling.value)">
+    <button class="copy-btn" onclick="copyText('${item.link}')">
       📋 COPY LINK
     </button>
 
     <textarea rows="3" readonly>${item.text}</textarea>
-    <button class="copy-btn" onclick="copyText(this.previousElementSibling.value)">
+    <button class="copy-btn" onclick="copyText(\`${item.text}\`)">
       📝 COPY NỘI DUNG
     </button>
   </div>`;
@@ -98,8 +132,3 @@ for(let i=1;i<=TOTAL_POST;i++){
 </script>
 </body>
 </html>
-
-
-
-
-
